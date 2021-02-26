@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Account Details";
+}
+<div class="container-fluid">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <h1>Welcome @ViewBag.MemberDetails.FirstName @ViewBag.MemberDetails.LastName</h1>
+        <div class="d-flex flex-row" style="height: 30px;">
+            Current Balance:  <div class="p-1 border border-secondary text-center"> $@ViewBag.UserBalance</div>
+        </div>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="container w-75">
+        <partial name="_Transaction"/>
+        <table class="table-bordered w-100 text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light">
+                @foreach (Transaction trans in ViewBag.UserTransactions)
+                {
+                    <tr>
+                        <td>$@trans.Amount</td>
+                        <td>@trans.UpdatedAt</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
